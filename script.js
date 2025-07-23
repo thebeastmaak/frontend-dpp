@@ -4,12 +4,12 @@ document.getElementById("product-form").addEventListener("submit", async (e) => 
   e.preventDefault();
 
   const product = {
-    product_id: document.getElementById("product_id").value,
-    name: document.getElementById("name").value,
-    country: document.getElementById("country").value,
-    sport: document.getElementById("sport").value,
-    description: document.getElementById("description").value,
-    image: document.getElementById("image").value  // ✅ New field for Image URL
+    product_id: document.getElementById("product_id").value.trim(),
+    name: document.getElementById("name").value.trim(),
+    country: document.getElementById("country").value.trim(),
+    sport: document.getElementById("sport").value.trim(),
+    description: document.getElementById("description").value.trim(),
+    image: document.getElementById("image").value.trim(),
   };
 
   try {
@@ -20,23 +20,40 @@ document.getElementById("product-form").addEventListener("submit", async (e) => 
     });
 
     const data = await res.json();
-    alert(data.message || "Product added successfully.");
+    alert(data.message || "✅ Product added successfully.");
   } catch (err) {
-    console.error("Error adding product:", err);
+    console.error("❌ Error adding product:", err);
     alert("❌ Failed to add product.");
   }
 });
 
 async function getProduct() {
-  const id = document.getElementById("search_id").value;
+  const id = document.getElementById("search_id").value.trim();
+  const resultContainer = document.getElementById("result");
 
   try {
     const res = await fetch(`${API_URL}/product/${id}`);
     const data = await res.json();
 
-    document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+    if (data.product_id) {
+      resultContainer.innerHTML = `
+        <h2>Product Details</h2>
+        <p><strong>🆔 Product ID:</strong> ${data.product_id}</p>
+        <p><strong>👤 Name:</strong> ${data.name}</p>
+        <p><strong>🌍 Country:</strong> ${data.country}</p>
+        <p><strong>🏅 Sport:</strong> ${data.sport}</p>
+        <p><strong>📝 Description:</strong> ${data.description || "N/A"}</p>
+        ${
+          data.image
+            ? `<img src="${data.image}" alt="Product Image" style="max-width: 300px; border-radius: 10px;" />`
+            : ""
+        }
+      `;
+    } else {
+      resultContainer.textContent = "❌ Product not found.";
+    }
   } catch (err) {
     console.error("Error fetching product:", err);
-    document.getElementById("result").textContent = "❌ Failed to fetch product.";
+    resultContainer.textContent = "❌ Failed to fetch product.";
   }
 }
