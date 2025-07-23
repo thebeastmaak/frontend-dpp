@@ -7,6 +7,7 @@ document.getElementById("product-form").addEventListener("submit", async (e) => 
     product_id: document.getElementById("product_id").value.trim(),
     name: document.getElementById("name").value.trim(),
     country: document.getElementById("country").value.trim(),
+    university: document.getElementById("university").value.trim(), // ✅ NEW FIELD
     sport: document.getElementById("sport").value.trim(),
     description: document.getElementById("description").value.trim(),
     image: document.getElementById("image").value.trim(),
@@ -41,6 +42,7 @@ async function getProduct() {
         <p><strong>🆔 Product ID:</strong> ${data.product_id}</p>
         <p><strong>👤 Name:</strong> ${data.name}</p>
         <p><strong>🌍 Country:</strong> ${data.country}</p>
+        <p><strong>🎓 University:</strong> ${data.university || "Not Provided"}</p>
         <p><strong>🏅 Sport:</strong> ${data.sport}</p>
         <p><strong>📝 Description:</strong> ${data.description || "N/A"}</p>
         ${
