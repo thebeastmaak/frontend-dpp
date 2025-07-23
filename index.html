@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Digital Product Passport</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Digital Product Passport</h1>
+
+  <form id="product-form">
+    <input type="text" placeholder="Product ID" id="product_id" required />
+    <input type="text" placeholder="Name" id="name" required />
+    <input type="text" placeholder="Manufacturer" id="manufacturer" required />
+    <input type="text" placeholder="Materials (comma-separated)" id="materials" required />
+    <button type="submit">Add Product</button>
+  </form>
+
+  <hr>
+
+  <input type="text" id="search_id" placeholder="Enter Product ID">
+  <button onclick="getProduct()">Search</button>
+
+  <pre id="result"></pre>
+
+  <script src="script.js"></script>
+</body>
+</html>
