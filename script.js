@@ -6,8 +6,8 @@ document.getElementById("product-form").addEventListener("submit", async (e) => 
   const product = {
     product_id: document.getElementById("product_id").value,
     name: document.getElementById("name").value,
-    manufacturer: document.getElementById("country").value,
-    materials: document.getElementById("sport").value,
+    country: document.getElementById("country").value,
+    sport: document.getElementById("sport").value,
     description: document.getElementById("description").value,
     image: document.getElementById("image").value  // ✅ New field for Image URL
   };
