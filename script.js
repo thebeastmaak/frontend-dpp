@@ -6,9 +6,10 @@ document.getElementById("product-form").addEventListener("submit", async (e) => 
   const product = {
     product_id: document.getElementById("product_id").value,
     name: document.getElementById("name").value,
-    manufacturer: document.getElementById("manufacturer").value,
+    manufacturer: document.getElementById("country").value,
+    materials: document.getElementById("sport").value,
     description: document.getElementById("description").value,
-    materials: document.getElementById("materials").value,
+    
   };
 
   const res = await fetch("https://backend-dpp.onrender.com/add", {
