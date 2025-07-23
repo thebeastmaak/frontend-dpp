@@ -2,20 +2,25 @@ const API_URL = "https://backend-dpp.onrender.com";
 
 document.getElementById("product-form").addEventListener("submit", async (e) => {
   e.preventDefault();
-  const payload = {
+
+  const product = {
     product_id: document.getElementById("product_id").value,
     name: document.getElementById("name").value,
     manufacturer: document.getElementById("manufacturer").value,
-    materials: document.getElementById("materials").value.split(",").map(s => s.trim())
+    description: document.getElementById("description").value,
+    materials: document.getElementById("materials").value,
   };
-  const res = await fetch(`${API_URL}/add`, {
+
+  const res = await fetch("https://backend-dpp.onrender.com/add", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(product),
   });
+
   const data = await res.json();
   alert(data.message);
 });
+
 
 async function getProduct() {
   const id = document.getElementById("search_id").value;
